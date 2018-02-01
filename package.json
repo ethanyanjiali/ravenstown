@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.1.4",
     "lodash": "^4.17.4",
+    "moment": "^2.20.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -27,6 +28,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators": "^6.24.1",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -34,5 +36,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "redux-devtools": "^3.4.1"
+  },
+  "theme": {
+    "primary-color": "#006BBD"
   }
 }

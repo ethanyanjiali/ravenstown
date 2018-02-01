@@ -1,7 +1,58 @@
 .app-container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  min-height: 100vh;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+}
+
+.app-landing-page {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-landing-divider {
+  margin: 20px;
+}
+
+.download-metamask-icon {
+  height: 100px;
+}
+/*
+  https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content
+*/
+.app-content-outer {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+}
+
+.app-content-inner {
+  display: flex;
+  flex: 1;
+  min-height: min-content;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  font-family: monospace !important;
 }
 
 /* Colors */

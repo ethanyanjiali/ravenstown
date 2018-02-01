@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import web3 from '../api/web3';
+import Web3Manager from '../web3/Web3Manager';
 
 export default class Translator {
   static toModel(data) {
@@ -8,7 +8,9 @@ export default class Translator {
       id: _.get(data, 'transactionHash'),
       blockNumber: _.get(data, 'blockNumber'),
       sender: _.get(data, 'args.sender'),
-      topic: web3.toAscii(_.get(data, 'args.topic')),
+      topic: Web3Manager.web3.toAscii(_.get(data, 'args.topic')),
+      replyTo: _.get(data, 'args.replyTo'),
+      timestamp: _.get(data, 'args.timestamp'),
     };
   }
 }

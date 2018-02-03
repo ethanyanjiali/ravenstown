@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import MessageCard from '../../../messages/components/MessageCard/MessageCard';
+import { PAGE_SIZE } from '../../constants';
+import MessageList from '../../../messages/components/MessageList/MessageList';
 import * as agoraActions from '../../actions';
+import * as web3Actions from '../../../web3/actions';
 import * as messagesActions from '../../../messages/actions';
 import * as selectors from '../../selectors';
 import MessageInputBox from '../../../messages/components/MessageInputBox/MessageInputBox';
@@ -11,6 +13,8 @@ import './AgoraContainer.css';
 
 const mapStateToProps = state => ({
   messagesList: selectors.getAgoraMessagesList(state),
+  blockHeight: state.web3.blockHeight,
+  isFetching: selectors.getIsFetching(state),
 });
 class AgoraContainer extends Component {
 
@@ -20,12 +24,18 @@ class AgoraContainer extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(agoraActions.loadAgoraMessages());
-    this.refreshMessages = setInterval(() => dispatch(agoraActions.loadAgoraMessages()), 5000);
+    dispatch(web3Actions.getBlockHeight());
   }
 
   componentWillUnmount() {
-    clearInterval(this.refreshMessages);
+    if (this.refreshMessages) {
+      clearInterval(this.refreshMessages);
+    }
+  }
+
+  getNewBlockBottom = (currentButtom) => {
+    const newBottom = currentButtom - PAGE_SIZE < 0 ? 0 : currentButtom - PAGE_SIZE;
+    return newBottom;
   }
 
   handleMessageInputChange = (event) => {
@@ -41,21 +51,32 @@ class AgoraContainer extends Component {
     dispatch(messagesActions.sendMessage(messageInput));
   }
 
+  handleLoadNextPage = (isVisible) => {
+    const { isFetching, dispatch, blockHeight } = this.props;
+    const { blockBottom } = this.state;
+    if (isVisible && !isFetching && blockBottom !== 0) {
+      const toBlock = blockBottom || blockHeight;
+      const fromBlock = this.getNewBlockBottom(toBlock);
+      dispatch(agoraActions.loadMessagesBestEffort(fromBlock, toBlock)).then(({ from }) => {
+        this.setState({
+          blockBottom: from,
+        });
+      });
+    }
+  }
+
   render() {
-    const { messagesList } = this.props;
-    const messagesCards = _.reverse(messagesList.map(message => (
-      <MessageCard
-        key={ message.id }
-        sender={ message.sender }
-        timestamp={ parseInt(message.timestamp, 10) }
-      >
-        { message.text }
-      </MessageCard>
-    )));
+    const { messagesList, isFetching, blockHeight } = this.props;
+    const { blockBottom } = this.state;
     return (
       <div className='agora-container'>
         <div className='agora-messages-list'>
-          { messagesCards }
+          <MessageList
+            list={ messagesList }
+            hasNextPage={ blockBottom !== 0 && blockHeight }
+            isNextPageLoading={ isFetching }
+            onLoadNextPage={ this.handleLoadNextPage }
+          />
         </div>
         <div className='agora-message-input'>
           <MessageInputBox onChange={ this.handleMessageInputChange } onSubmit={ this.handleSubmitMessage } />
@@ -68,10 +89,12 @@ class AgoraContainer extends Component {
 AgoraContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   messagesList: PropTypes.array,
+  isFetching: PropTypes.bool,
 };
 
 AgoraContainer.defaultProps = {
   messagesList: [],
+  isFetching: false,
 };
 
 export default connect(mapStateToProps)(AgoraContainer);

@@ -18,3 +18,20 @@
   display: flex;
   box-shadow: 5px -1px 5px 2px var(--light-grey);;
 }
+
+.more-blocks-notification {
+  border-radius: 8px;
+  background-color: var(--light-blue);
+  cursor: pointer;
+  color: white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+
+.more-blocks-notification:hover {
+  background-color: var(--blue);
+}

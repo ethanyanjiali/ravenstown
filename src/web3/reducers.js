@@ -33,6 +33,7 @@ const isWeb3Loaded = (state = false, action) => {
   switch (action.type) {
     case TYPE.LOAD_WEB3_START:
     case TYPE.LOAD_WEB3_ERROR:
+    case TYPE.LOG_OUT:
       return false;
     case TYPE.LOAD_WEB3_SUCCESS:
       return true;
@@ -47,7 +48,22 @@ const isWeb3Loading = (state = false, action) => {
       return true;
     case TYPE.LOAD_WEB3_SUCCESS:
     case TYPE.LOAD_WEB3_ERROR:
+    case TYPE.LOG_OUT:
       return false;
+    default:
+      return state;
+  }
+};
+
+const web3Error = (state = false, action) => {
+  const error = action.payload;
+  switch (action.type) {
+    case TYPE.LOAD_WEB3_START:
+    case TYPE.LOAD_WEB3_SUCCESS:
+    case TYPE.LOG_OUT:
+      return null;
+    case TYPE.LOAD_WEB3_ERROR:
+      return error;
     default:
       return state;
   }
@@ -57,5 +73,6 @@ export default {
   isWeb3Loaded,
   isWeb3Loading,
   blockHeight,
+  web3Error,
   isGettingBlockHeight,
 };

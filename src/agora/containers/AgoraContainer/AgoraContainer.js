@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { PAGE_SIZE } from '../../constants';
 import MessageList from '../../../messages/components/MessageList/MessageList';
+import MessageCard from '../../../messages/components/MessageCard/MessageCard';
 import * as agoraActions from '../../actions';
 import * as web3Actions from '../../../web3/actions';
 import * as messagesActions from '../../../messages/actions';
@@ -25,17 +27,13 @@ class AgoraContainer extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(web3Actions.getBlockHeight());
+    this.checkLatestHeight = setInterval(() => dispatch(web3Actions.getBlockHeight()), 10000);
   }
 
   componentWillUnmount() {
-    if (this.refreshMessages) {
-      clearInterval(this.refreshMessages);
+    if (this.checkLatestHeight) {
+      clearInterval(this.checkLatestHeight);
     }
-  }
-
-  getNewBlockBottom = (currentButtom) => {
-    const newBottom = currentButtom - PAGE_SIZE < 0 ? 0 : currentButtom - PAGE_SIZE;
-    return newBottom;
   }
 
   handleMessageInputChange = (event) => {
@@ -56,10 +54,23 @@ class AgoraContainer extends Component {
     const { blockBottom } = this.state;
     if (isVisible && !isFetching && blockBottom !== 0) {
       const toBlock = blockBottom || blockHeight;
-      const fromBlock = this.getNewBlockBottom(toBlock);
+      const fromBlock = Math.max(toBlock - PAGE_SIZE, 0);
       dispatch(agoraActions.loadMessagesBestEffort(fromBlock, toBlock)).then(({ from }) => {
         this.setState({
           blockBottom: from,
+          blockTop: blockHeight,
+        });
+      });
+    }
+  }
+
+  handleFetchNewMessages = () => {
+    const { blockTop } = this.state;
+    const { blockHeight, dispatch, isFetching } = this.props;
+    if (!isFetching) {
+      dispatch(agoraActions.loadAgoraMessages(blockTop, blockHeight)).then(() => {
+        this.setState({
+          blockTop: blockHeight,
         });
       });
     }
@@ -67,13 +78,19 @@ class AgoraContainer extends Component {
 
   render() {
     const { messagesList, isFetching, blockHeight } = this.props;
-    const { blockBottom } = this.state;
+    const { blockBottom, blockTop } = this.state;
     return (
       <div className='agora-container'>
         <div className='agora-messages-list'>
+          { blockTop && blockTop !== blockHeight &&
+            <div className='more-blocks-notification' onClick={ this.handleFetchNewMessages }>
+              { isFetching && <Spin /> }
+              { !isFetching && <div>{ `Check messages from ${blockHeight - blockTop} new blocks.` }</div> }
+            </div>
+          }
           <MessageList
             list={ messagesList }
-            hasNextPage={ blockBottom !== 0 && blockHeight }
+            hasNextPage={ blockBottom !== 0 && !!blockHeight }
             isNextPageLoading={ isFetching }
             onLoadNextPage={ this.handleLoadNextPage }
           />
@@ -90,6 +107,7 @@ AgoraContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   messagesList: PropTypes.array,
   isFetching: PropTypes.bool,
+  blockHeight: PropTypes.number,
 };
 
 AgoraContainer.defaultProps = {

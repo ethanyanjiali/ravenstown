@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Divider } from 'antd';
+import { Button, Divider, Modal } from 'antd';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
@@ -11,13 +11,19 @@ import Web3Manager from './web3/Web3Manager';
 import * as web3Actions from './web3/actions';
 import { makeAction } from './common/utils/reduxUtils';
 import downloadMetaMask from './assets/download-metamask.png';
+import metamaskUnlock from './assets/metamask-unlock.png';
 
 const mapStateToProps = state => ({
   isWeb3Loaded: state.web3.isWeb3Loaded,
   isWeb3Loading: state.web3.isWeb3Loading,
+  web3Error: state.web3.web3Error,
 });
 
 class App extends Component {
+
+  state = {
+    isLogInModalVisible: false,
+  }
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -26,11 +32,18 @@ class App extends Component {
 
   onSignInWithMetaMask = () => {
     const { dispatch } = this.props;
-    dispatch(web3Actions.loadMetaMaskWeb3());
+    dispatch(web3Actions.loadMetaMaskWeb3()).then((success) => {
+      if (!success) {
+        this.setState({
+          isLogInModalVisible: true,
+        });
+      }
+    });
   }
 
   render() {
-    const { isWeb3Loaded, isWeb3Loading } = this.props;
+    const { isWeb3Loaded, isWeb3Loading, web3Error } = this.props;
+    const { isLogInModalVisible } = this.state;
     return (
       <div className='app-container'>
         <SideNavContainer />
@@ -56,6 +69,18 @@ class App extends Component {
             </div>
           </div>
         }
+        <Modal
+          title='Set Up Your MetaMask'
+          visible={ isLogInModalVisible }
+          footer={null}
+          closable={ false }
+        >
+          <div className='login-modal-content'>
+            <p>Make sure to unlock MetaMask and select the correct account</p>
+            <img className='unlock-image' src={ metamaskUnlock } alt='unlock' />
+            <Button onClick={ () => this.setState({ isLogInModalVisible: false })}>Try Again</Button>
+          </div>
+        </Modal>
       </div>
     );
   }

@@ -4,7 +4,7 @@ import Web3 from 'web3';
 class Web3Manager {
 
   contractAbi = [{"constant":false,"inputs":[{"name":"text","type":"string"},{"name":"topic","type":"bytes32"},{"name":"replyTo","type":"address"}],"name":"sendMessage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"text","type":"string"},{"indexed":true,"name":"sender","type":"address"},{"indexed":true,"name":"topic","type":"bytes32"},{"indexed":true,"name":"replyTo","type":"address"},{"indexed":false,"name":"timestamp","type":"uint256"}],"name":"Message","type":"event"}];
-  contractAddress = '0xdda6327139485221633a1fcd65f4ac932e60a2e1';
+  contractAddress = '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf';
 
   constructor() {
     this._web3 = null;

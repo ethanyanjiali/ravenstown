@@ -11,14 +11,16 @@ export default class MessageCard extends Component {
         <div className='message-card-content'>
           { children }
         </div>
-        <div className='message-card-meta'>
-          <div className='message-card-sender'>
-            { sender }
+        { (sender || timestamp) &&
+          <div className='message-card-meta'>
+            <div className='message-card-sender'>
+              { sender }
+            </div>
+            <div className='message-card-timestamp'>
+              { moment.unix(timestamp).format('HH:MM MM/DD/YYYY') }
+            </div>
           </div>
-          <div className='message-card-timestamp'>
-            { moment.unix(timestamp).format('HH:MM MM/DD/YYYY') }
-          </div>
-        </div>
+        }
       </div>
     );
   }

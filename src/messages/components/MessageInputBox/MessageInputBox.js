@@ -24,5 +24,5 @@ MessageInputBox.propTypes = {
 MessageInputBox.defaultProps = {
   onChange: () => {},
   onSubmit: () => {},
-  placeholder: 'Type here',
+  placeholder: 'Type your message here.',
 };

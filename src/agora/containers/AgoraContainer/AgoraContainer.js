@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { Spin } from 'antd';
+import { Spin, Modal, Button } from 'antd';
 import { connect } from 'react-redux';
 import { PAGE_SIZE } from '../../constants';
 import MessageList from '../../../messages/components/MessageList/MessageList';
@@ -11,6 +11,7 @@ import * as web3Actions from '../../../web3/actions';
 import * as messagesActions from '../../../messages/actions';
 import * as selectors from '../../selectors';
 import MessageInputBox from '../../../messages/components/MessageInputBox/MessageInputBox';
+import confirmTransaction from '../../../assets/confirm-transaction.png';
 import './AgoraContainer.css';
 
 const mapStateToProps = state => ({
@@ -22,6 +23,7 @@ class AgoraContainer extends Component {
 
   state = {
     messageInput: '',
+    isSendMessageModalVisible: false,
   }
 
   componentDidMount() {
@@ -46,6 +48,9 @@ class AgoraContainer extends Component {
   handleSubmitMessage = () => {
     const { dispatch } = this.props;
     const { messageInput } = this.state;
+    this.setState({
+      isSendMessageModalVisible: true,
+    });
     dispatch(messagesActions.sendMessage(messageInput));
   }
 
@@ -78,7 +83,7 @@ class AgoraContainer extends Component {
 
   render() {
     const { messagesList, isFetching, blockHeight } = this.props;
-    const { blockBottom, blockTop } = this.state;
+    const { blockBottom, blockTop, isSendMessageModalVisible } = this.state;
     return (
       <div className='agora-container'>
         <div className='agora-messages-list'>
@@ -98,6 +103,18 @@ class AgoraContainer extends Component {
         <div className='agora-message-input'>
           <MessageInputBox onChange={ this.handleMessageInputChange } onSubmit={ this.handleSubmitMessage } />
         </div>
+        <Modal
+          title='Confirm Your Transaction'
+          visible={ isSendMessageModalVisible }
+          footer={null}
+          closable={ false }
+        >
+          <div className='send-message-modal-content'>
+            <p>Please confirm your transaction in MetaMask popup window. The higher the gas price is, the sooner your message will be posted.</p>
+            <img className='confirm-transaction-image' src={ confirmTransaction } alt='submit-transcation' />
+            <Button onClick={ () => this.setState({ isSendMessageModalVisible: false })}>OK</Button>
+          </div>
+        </Modal>
       </div>
     );
   }

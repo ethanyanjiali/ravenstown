@@ -30,9 +30,10 @@ class SideNavContainer extends Component {
       <div className='sidenav-container'>
         <div className='sidenav-logo'>
           <img className='raven-logo' src={ ravenLogo } alt='logo' />
-          <h2 className='raven-name'>RAVEN</h2>
+          <h2 className='raven-name'>RAVENSTOWN</h2>
+          <div className='version-label'>Pre-Alpha 0.0.1</div>
         </div>
-        <SideNavItem label='Agora' navId='agora' onClick={ this.handleClickNavItem } />
+        <SideNavItem label='Town Square' navId='square' onClick={ this.handleClickNavItem } />
         { isWeb3Loaded && <SideNavItem label='Log Out' navId='logout' onClick={ this.handleClickNavItem } /> }
       </div>
     );

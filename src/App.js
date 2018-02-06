@@ -57,6 +57,7 @@ class App extends Component {
               <a href='https://metamask.io/' target='_blank' rel='noreferrer noopener' className='download-metamask'>
                 <img className='download-metamask-icon' src={ downloadMetaMask } alt='download-metamask' />
               </a>
+              <p className='app-description'>Ravenstown is a decentralized platform for people to express themselves freely. All your posts will be stored on ethereum blockchain permanently, which means no one could ever modify or delete them after, even yourself.</p>
             </div>
           </div>
         }

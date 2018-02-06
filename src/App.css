@@ -45,6 +45,13 @@
   width: 100%;
 }
 
+.app-description {
+  color: lightgrey;
+  text-align: center;
+  padding: 0px 30px;
+  margin-top:50px;
+}
+
 .login-modal-content {
   display: flex;
   flex-direction: column;

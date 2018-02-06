@@ -3,8 +3,8 @@ import Web3 from 'web3';
 
 class Web3Manager {
 
-  contractAbi = [{"constant":false,"inputs":[{"name":"text","type":"string"},{"name":"topic","type":"bytes32"},{"name":"replyTo","type":"address"}],"name":"sendMessage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"text","type":"string"},{"indexed":true,"name":"sender","type":"address"},{"indexed":true,"name":"topic","type":"bytes32"},{"indexed":true,"name":"replyTo","type":"address"},{"indexed":false,"name":"timestamp","type":"uint256"}],"name":"Message","type":"event"}];
-  contractAddress = '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf';
+  contractAbi = [{"constant":false,"inputs":[{"name":"newLength","type":"uint256"}],"name":"setMessageMaxLength","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"text","type":"string"},{"name":"topic","type":"bytes32"},{"name":"replyTo","type":"address"}],"name":"sendMessage","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"text","type":"string"},{"indexed":true,"name":"sender","type":"address"},{"indexed":true,"name":"topic","type":"bytes32"},{"indexed":true,"name":"replyTo","type":"address"},{"indexed":false,"name":"timestamp","type":"uint256"}],"name":"Message","type":"event"}];
+  contractAddress = '0x0e48eae7488311533cd60032050390e963593859';
 
   constructor() {
     this._web3 = null;

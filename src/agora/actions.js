@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { NAME, PAGE_SIZE } from './constants';
+import { NAME, PAGE_SIZE, BOTTOM_BLOCK } from './constants';
 import { createResourceActions, makeAction } from '../common/utils/reduxUtils';
 import Web3Manager from '../web3/Web3Manager';
 import MessageTranslator from '../messages/translators';
@@ -7,7 +7,7 @@ import MessageTranslator from '../messages/translators';
 const resourceActions = createResourceActions(NAME);
 
 // eslint-disable-next-line
-export const loadAgoraMessages = (fromBlock = 0, toBlock = 'latest') => (dispatch) => {
+export const loadAgoraMessages = (fromBlock = 5039195, toBlock = 'latest') => (dispatch) => {
   dispatch(makeAction(resourceActions.FETCH_PARTIAL_START));
   const contract = Web3Manager.raven;
   return new Promise((resolve, reject) => {
@@ -29,8 +29,8 @@ const loadMessages = (from, to, messages) => new Promise((resolve, reject) => {
   contract.Message({}, { fromBlock: from, toBlock: to }).get((err, result) => {
     if (!err) {
       const newMessages = messages.concat(_.map(result, message => MessageTranslator.toModel(message)));
-      if (newMessages.length < 10 && from !== 0) {
-        const newFrom = Math.max(from - PAGE_SIZE, 0);
+      if (newMessages.length < 10 && from !== BOTTOM_BLOCK) {
+        const newFrom = Math.max(from - PAGE_SIZE, BOTTOM_BLOCK);
         const newTo = from;
         resolve(loadMessages(newFrom, newTo, newMessages));
       }

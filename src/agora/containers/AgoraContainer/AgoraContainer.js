@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Spin, Modal, Button } from 'antd';
 import { connect } from 'react-redux';
-import { PAGE_SIZE } from '../../constants';
+import { PAGE_SIZE, BOTTOM_BLOCK } from '../../constants';
 import MessageList from '../../../messages/components/MessageList/MessageList';
 import MessageCard from '../../../messages/components/MessageCard/MessageCard';
 import * as agoraActions from '../../actions';
@@ -57,9 +57,9 @@ class AgoraContainer extends Component {
   handleLoadNextPage = (isVisible) => {
     const { isFetching, dispatch, blockHeight } = this.props;
     const { blockBottom } = this.state;
-    if (isVisible && !isFetching && blockBottom !== 0) {
+    if (isVisible && !isFetching && blockBottom !== BOTTOM_BLOCK) {
       const toBlock = blockBottom || blockHeight;
-      const fromBlock = Math.max(toBlock - PAGE_SIZE, 0);
+      const fromBlock = Math.max(toBlock - PAGE_SIZE, BOTTOM_BLOCK);
       dispatch(agoraActions.loadMessagesBestEffort(fromBlock, toBlock)).then(({ from }) => {
         this.setState({
           blockBottom: from,
@@ -95,7 +95,7 @@ class AgoraContainer extends Component {
           }
           <MessageList
             list={ messagesList }
-            hasNextPage={ blockBottom !== 0 && !!blockHeight }
+            hasNextPage={ blockBottom !== BOTTOM_BLOCK && !!blockHeight }
             isNextPageLoading={ isFetching }
             onLoadNextPage={ this.handleLoadNextPage }
           />

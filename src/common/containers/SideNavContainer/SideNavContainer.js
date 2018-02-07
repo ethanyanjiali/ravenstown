@@ -62,7 +62,7 @@ class SideNavContainer extends Component {
             }}
           >
             <a style={{ textAlign: 'center' }} href='https://www.ethereum.org/' target='_blank' rel='noopener noreferrer'><img style={{ width: '40%' }} src={ ethLogo } alt='ethLogo' /></a>
-            <p>This project is powered by ethereum. We aim to build a decentralized space for people to talk freely. If you have any interest, or questions about upcoming new features, please contact me via liyanjia92@gmail.com</p>
+            <p>This project is powered by ethereum. We aim to build a decentralized space for people to talk freely. If you have any interest, or questions about upcoming new features, please contact me via liyanjia92 at gmail.com</p>
             <Button onClick={ () => this.setState({ aboutModalVisible: false })}>OK</Button>
           </div>
         </Modal>

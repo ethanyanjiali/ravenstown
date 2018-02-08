@@ -5,6 +5,7 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  min-width: 440px;
 }
 
 .message-card-content {
@@ -20,12 +21,13 @@
   align-items: flex-end;
   justify-content: space-between;
   color: lightgrey;
+  flex-wrap: wrap;
 }
 
 .message-card-sender {
-
+  flex: 1 1 200;
 }
 
 .message-card-timestamp {
-
+  flex: 1 1 200;
 }

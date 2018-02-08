@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Divider, Modal } from 'antd';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './App.css';
-import AgoraContainer from './agora/containers/AgoraContainer/AgoraContainer';
+import TopicContainer from './topic/containers/TopicContainer/TopicContainer';
 import SideNavContainer from './common/containers/SideNavContainer/SideNavContainer';
 import Web3Manager from './web3/Web3Manager';
 import * as web3Actions from './web3/actions';
@@ -65,7 +65,7 @@ class App extends Component {
           <div className='app-content-outer'>
             <div className='app-content-inner'>
               <Switch>
-                <Route exact path='/' component={ AgoraContainer } />
+                <Route path='/' component={ TopicContainer } />
               </Switch>
             </div>
           </div>
@@ -92,4 +92,4 @@ App.propTypes = {
   isWeb3Loaded: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

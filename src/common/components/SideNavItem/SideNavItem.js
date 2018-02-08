@@ -12,6 +12,6 @@ export default class SideNavItem extends Component {
 
 SideNavItem.propTypes = {
   label: PropTypes.element.isRequired,
-  navId: PropTypes.string.isRequired,
+  navId: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };

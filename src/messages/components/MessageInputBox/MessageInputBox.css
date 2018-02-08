@@ -12,27 +12,40 @@
   border: 1px solid var(--light-blue);
   border-radius: 10px;
   padding-left: 10px;
+  margin-left: 15px;
   height: 30px;
-  flex: 1;
+  flex: 10;
   font-size: 1em;
   transition: border 0.3s;
 }
 
-.message-input:hover {
+.topic-input {
+  outline: none;
+  width: 120px;
+  background: var(--off-white);
+  border: 1px solid var(--light-blue);
+  border-radius: 10px;
+  padding-left: 10px;
+  height: 30px;
+  font-size: 1em;
+  transition: border 0.3s;
+}
+
+.message-input:hover, .topic-input:hover {
   border: 1px solid var(--blue);
 }
 
-.message-input::placeholder {
+.message-input::placeholder, .topic-input::placeholder {
   color: var(--light-blue);
   transition: color 0.3s;
 }
 
-.message-input:hover::placeholder {
+.message-input:hover::placeholder, .topic-input:hover::placeholder {
   color: var(--blue);
 }
 
 .message-send {
-  width: 150px;
+  width: 100px;
   margin-left: 20px;
   border-radius: 10px;
   border: none;

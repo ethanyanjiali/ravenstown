@@ -8,9 +8,10 @@ export default class Translator {
       id: _.get(data, 'transactionHash'),
       blockNumber: _.get(data, 'blockNumber'),
       sender: _.get(data, 'args.sender'),
-      topic: Web3Manager.web3.toAscii(_.get(data, 'args.topic')),
+      topic: Web3Manager.web3.toAscii(_.get(data, 'args.topic')).replace(/\0/g, ''),
       replyTo: _.get(data, 'args.replyTo'),
       timestamp: _.get(data, 'args.timestamp'),
+      tx: _.get(data, 'transactionHash'),
     };
   }
 }

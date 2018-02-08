@@ -1,0 +1,104 @@
+.topic-container {
+  background-color: var(--light-grey);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-messages-list {
+  padding: 30px;
+  margin-bottom: 60px;
+}
+
+.topic-message-input {
+  position: absolute;
+  bottom: 0;
+  left: 200px;
+  right: 0;
+  display: flex;
+  box-shadow: 5px -1px 5px 2px var(--light-grey);;
+}
+
+.more-blocks-notification {
+  border-radius: 8px;
+  background-color: var(--light-blue);
+  cursor: pointer;
+  color: white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+
+.more-blocks-notification:hover {
+  background-color: var(--blue);
+}
+
+.confirm-transaction-image {
+  width: 50%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px grey;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.send-message-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topic-search {
+  padding: 30px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+}
+
+.topic-search-input {
+  outline: none;
+  flex: 1;
+  background: var(--off-white);
+  border: 1px solid var(--light-blue);
+  border-radius: 10px;
+  padding-left: 10px;
+  height: 30px;
+  font-size: 1em;
+  transition: border 0.3s;
+}
+
+.topic-search-input:hover {
+  border: 1px solid var(--blue);
+}
+
+.topic-search-input::placeholder {
+  color: var(--light-blue);
+  transition: color 0.3s;
+}
+
+.topic-search-input:hover::placeholder {
+  color: var(--blue);
+}
+
+.topic-search-button {
+  width: 100px;
+  margin-left: 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--light-blue);
+  color: white;
+  outline: none;
+  font-size: 1em;
+}
+
+.topic-search-button:hover {
+  background: var(--blue);
+  color: white;
+}
+
+.topic-search-button:focus {
+  background: var(--blue);
+  color: white;
+}

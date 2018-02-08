@@ -24,6 +24,8 @@ class MessageList extends PureComponent {
               key={ item.id }
               sender={ item.sender }
               timestamp={ parseInt(item.timestamp, 10) }
+              txHash={ item.tx }
+              topic={ item.topic }
             >
               { item.text }
             </MessageCard>

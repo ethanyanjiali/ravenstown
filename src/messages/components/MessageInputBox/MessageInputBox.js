@@ -5,9 +5,10 @@ import './MessageInputBox.css';
 
 export default class MessageInputBox extends Component {
   render() {
-    const { onChange, placeholder, onSubmit } = this.props;
+    const { onChange, placeholder, onSubmit, onChangeTopic, topicPlaceholder } = this.props;
     return (
       <div className='message-input-box'>
+        <input className='topic-input' type='text' onChange={ onChangeTopic } placeholder={ topicPlaceholder } />
         <input className='message-input' type='text' onChange={ onChange } placeholder={ placeholder } />
         <Button className='message-send' onClick={ onSubmit }>Send</Button>
       </div>

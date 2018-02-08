@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Modal, Button } from 'antd';
 import * as web3Actions from '../../../web3/actions';
 import SideNavItem from '../../components/SideNavItem/SideNavItem';
@@ -19,10 +20,13 @@ class SideNavContainer extends Component {
   }
 
   handleClickNavItem = (navId) => {
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
     switch (navId) {
       case 'logout':
         dispatch(web3Actions.logoutMetaMask());
+        break;
+      case 'square':
+        history.push('/');
         break;
       default:
         console.log(navId);
@@ -44,11 +48,11 @@ class SideNavContainer extends Component {
         <div className='sidenav-logo'>
           <img className='raven-logo' src={ ravenLogo } alt='logo' />
           <h2 className='raven-name'>RAVENSTOWN</h2>
-          <div className='version-label'>Pre-Alpha 0.0.1</div>
+          <div className='version-label'>Pre-Alpha 0.2.0</div>
         </div>
         <SideNavItem label='Town Square' navId='square' onClick={ this.handleClickNavItem } />
-        { isWeb3Loaded && <SideNavItem label='Log Out' navId='logout' onClick={ this.handleClickNavItem } /> }
         <SideNavItem label='About' onClick={ this.handleClickAbout } />
+        { isWeb3Loaded && <SideNavItem label='Log Out' navId='logout' onClick={ this.handleClickNavItem } /> }
         <Modal
           title='About Us'
           visible={ aboutModalVisible }
@@ -73,10 +77,11 @@ class SideNavContainer extends Component {
 
 SideNavContainer.propTypes = {
   isWeb3Loaded: PropTypes.bool,
+  history: PropTypes.object.isRequired,
 };
 
 SideNavContainer.defaultProps = {
   isWeb3Loaded: false,
 };
 
-export default connect(mapStateToProps)(SideNavContainer);
+export default withRouter(connect(mapStateToProps)(SideNavContainer));

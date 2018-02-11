@@ -67,7 +67,8 @@ class MessageThreadContainer extends Component {
         this.setState({
           messageInput: '',
         });
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {

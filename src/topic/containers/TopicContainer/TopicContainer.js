@@ -122,7 +122,8 @@ class TopicContainer extends Component {
           messageInput: '',
           topicInput: '',
         });
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   handleLoadNextPage = (isVisible) => {

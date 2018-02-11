@@ -1,0 +1,348 @@
+{
+  "contractName": "Twitter",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "bytes32"
+        }
+      ],
+      "name": "sendTweet",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "tweet",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "Tweet",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x60606040523415600e57600080fd5b60ed8061001c6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633fb73c82146044575b600080fd5b3415604e57600080fd5b60666004808035600019169060200190919050506068565b005b3373ffffffffffffffffffffffffffffffffffffffff167fb0a943f98f287133a5ebd2ea93e226372134d5bb974d8a0034c1f518484b58218260405180826000191660001916815260200191505060405180910390a2505600a165627a7a723058201c75bec06a29d0590dae15accb1c21050b17c10f365f8131fa09121ade63eb440029",
+  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633fb73c82146044575b600080fd5b3415604e57600080fd5b60666004808035600019169060200190919050506068565b005b3373ffffffffffffffffffffffffffffffffffffffff167fb0a943f98f287133a5ebd2ea93e226372134d5bb974d8a0034c1f518484b58218260405180826000191660001916815260200191505060405180910390a2505600a165627a7a723058201c75bec06a29d0590dae15accb1c21050b17c10f365f8131fa09121ade63eb440029",
+  "sourceMap": "26:173:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:173:0:-;;;;;;;;;;;;;;;;;;;;;;;;110:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;179:10;167:23;;;173:4;167:23;;;;;;;;;;;;;;;;;;;;;;;;110:87;:::o",
+  "source": "pragma solidity ^0.4.17;\n\ncontract Twitter {\n    event Tweet(bytes32 tweet, address indexed sender);\n    \n    function sendTweet(bytes32 text) public {\n        return Tweet(text, msg.sender);\n    }\n}",
+  "sourcePath": "/Users/yanjia.li/Projects/eth/contracts/Twitter.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/yanjia.li/Projects/eth/contracts/Twitter.sol",
+      "exportedSymbols": {
+        "Twitter": [
+          20
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".17"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            20
+          ],
+          "name": "Twitter",
+          "scope": 21
+        },
+        "children": [
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "Tweet"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "tweet",
+                      "scope": 7,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 2,
+                        "name": "ElementaryTypeName",
+                        "src": "61:7:0"
+                      }
+                    ],
+                    "id": 3,
+                    "name": "VariableDeclaration",
+                    "src": "61:13:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "sender",
+                      "scope": 7,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 4,
+                        "name": "ElementaryTypeName",
+                        "src": "76:7:0"
+                      }
+                    ],
+                    "id": 5,
+                    "name": "VariableDeclaration",
+                    "src": "76:22:0"
+                  }
+                ],
+                "id": 6,
+                "name": "ParameterList",
+                "src": "60:39:0"
+              }
+            ],
+            "id": 7,
+            "name": "EventDefinition",
+            "src": "49:51:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "sendTweet",
+              "payable": false,
+              "scope": 20,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "text",
+                      "scope": 19,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 8,
+                        "name": "ElementaryTypeName",
+                        "src": "129:7:0"
+                      }
+                    ],
+                    "id": 9,
+                    "name": "VariableDeclaration",
+                    "src": "129:12:0"
+                  }
+                ],
+                "id": 10,
+                "name": "ParameterList",
+                "src": "128:14:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 11,
+                "name": "ParameterList",
+                "src": "150:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 11
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7,
+                              "type": "function (bytes32,address)",
+                              "value": "Tweet"
+                            },
+                            "id": 12,
+                            "name": "Identifier",
+                            "src": "167:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 9,
+                              "type": "bytes32",
+                              "value": "text"
+                            },
+                            "id": 13,
+                            "name": "Identifier",
+                            "src": "173:4:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 32,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 14,
+                                "name": "Identifier",
+                                "src": "179:3:0"
+                              }
+                            ],
+                            "id": 15,
+                            "name": "MemberAccess",
+                            "src": "179:10:0"
+                          }
+                        ],
+                        "id": 16,
+                        "name": "FunctionCall",
+                        "src": "167:23:0"
+                      }
+                    ],
+                    "id": 17,
+                    "name": "Return",
+                    "src": "160:30:0"
+                  }
+                ],
+                "id": 18,
+                "name": "Block",
+                "src": "150:47:0"
+              }
+            ],
+            "id": 19,
+            "name": "FunctionDefinition",
+            "src": "110:87:0"
+          }
+        ],
+        "id": 20,
+        "name": "ContractDefinition",
+        "src": "26:173:0"
+      }
+    ],
+    "id": 21,
+    "name": "SourceUnit",
+    "src": "0:199:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {
+    "1516340833724": {
+      "events": {},
+      "links": {},
+      "address": "0x9b292aef6cd3ed4056ac9eeb983a48f846e32e2c"
+    }
+  },
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-01-19T23:41:34.587Z"
+}

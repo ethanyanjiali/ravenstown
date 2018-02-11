@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import abiDecoder from 'abi-decoder';
 import moment from 'moment';
+import abiDecoder from '../web3/abiDecoder';
 import Web3Manager from '../web3/Web3Manager';
 
 abiDecoder.addABI(Web3Manager.ravenAbi);

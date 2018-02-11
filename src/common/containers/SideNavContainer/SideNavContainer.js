@@ -48,7 +48,7 @@ class SideNavContainer extends Component {
         <div className='sidenav-logo'>
           <img className='raven-logo' src={ ravenLogo } alt='logo' />
           <h2 className='raven-name'>RAVENSTOWN</h2>
-          <div className='version-label'>Pre-Alpha 0.2.0</div>
+          <div className='version-label'>Pre-Alpha 0.3.1</div>
         </div>
         <SideNavItem label='Town Square' navId='square' onClick={ this.handleClickNavItem } />
         <SideNavItem label='About' onClick={ this.handleClickAbout } />

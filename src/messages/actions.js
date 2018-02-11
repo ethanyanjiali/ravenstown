@@ -69,10 +69,12 @@ export const loadRepliesBestEffort = (fromBlock = 0, toBlock = 'latest', topic =
 
 export const addPendingMessage = txHash => (dispatch) => {
   const interval = setInterval(() => {
-    Web3Manager.web3.eth.getTransactionReceipt(txHash, (err) => {
+    Web3Manager.web3.eth.getTransactionReceipt(txHash, (err, result) => {
       if (!err) {
-        clearInterval(interval);
-        dispatch(makeAction(TYPES.REMOVE_PENDING_MESSAGE, { txHash }));
+        if (result && result.blockNumber) {
+          clearInterval(interval);
+          dispatch(makeAction(TYPES.REMOVE_PENDING_MESSAGE, { txHash }));
+        }
       }
     });
   }, 10000);

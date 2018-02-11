@@ -38,6 +38,7 @@ class TopicContainer extends Component {
     const txHash = this.getTxHashFromPathName(this.props);
     this.setState({
       txHash,
+      isMessageThreadVisible: !!txHash,
     });
   }
 
@@ -52,6 +53,7 @@ class TopicContainer extends Component {
     if (txHash !== this.state.txHash) {
       this.setState({
         txHash,
+        isMessageThreadVisible: !!txHash,
       });
     }
   }

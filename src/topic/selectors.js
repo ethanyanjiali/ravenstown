@@ -6,5 +6,5 @@ export const getIsFetching = state => state.topic.isFetchingPartial;
 
 export const getTopicMessagesList = createSelector(
   getTopicMessages,
-  messages => _.orderBy(_.values(messages), ['timestamp', 'sender'], 'desc'),
+  messages => _.orderBy(_.values(messages), ['sequence'], 'desc'),
 );

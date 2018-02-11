@@ -14,6 +14,7 @@ class MessageList extends PureComponent {
       isLoadingNextPage,
       list,
       onLoadNextPage,
+      onClickMessage,
     } = this.props;
 
     return (
@@ -23,9 +24,10 @@ class MessageList extends PureComponent {
             <MessageCard
               key={ item.id }
               sender={ item.sender }
-              timestamp={ parseInt(item.timestamp, 10) }
+              timestamp={ item.timestamp }
               txHash={ item.tx }
               topic={ item.topic }
+              onClick={ onClickMessage }
             >
               { item.text }
             </MessageCard>

@@ -65,7 +65,8 @@ class App extends Component {
           <div className='app-content-outer'>
             <div className='app-content-inner'>
               <Switch>
-                <Route path='/' component={ TopicContainer } />
+                <Route exact path='/' component={ TopicContainer } />
+                <Route path='/m' component={ TopicContainer} />
               </Switch>
             </div>
           </div>

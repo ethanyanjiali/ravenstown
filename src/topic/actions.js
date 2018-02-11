@@ -12,11 +12,11 @@ export const clearAll = () => (dispatch) => {
 };
 
 // eslint-disable-next-line
-export const loadTopicMessages = (fromBlock = 5039195, toBlock = 'latest', topic = '') => (dispatch) => {
+export const loadTopicMessages = (fromBlock = 5039195, toBlock = 'latest', topic = '', replyTo = '0x0') => (dispatch) => {
   dispatch(makeAction(resourceActions.FETCH_PARTIAL_START));
   const contract = Web3Manager.raven;
   return new Promise((resolve, reject) => {
-    const filter = topic ? { topic } : {};
+    const filter = topic ? { topic, replyTo } : { replyTo };
     contract.Message(filter, { fromBlock, toBlock }).get((err, result) => {
       if (!err) {
         const messages = _.map(result, message => MessageTranslator.toModel(message));
@@ -32,7 +32,7 @@ export const loadTopicMessages = (fromBlock = 5039195, toBlock = 'latest', topic
 
 const loadMessages = (from, to, topic, messages) => new Promise((resolve, reject) => {
   const contract = Web3Manager.raven;
-  const filter = topic ? { topic } : {};
+  const filter = topic ? { topic, replyTo: '0x0' } : { replyTo: '0x0' };
   contract.Message(filter, { fromBlock: from, toBlock: to }).get((err, result) => {
     if (!err) {
       const newMessages = messages.concat(_.map(result, message => MessageTranslator.toModel(message)));

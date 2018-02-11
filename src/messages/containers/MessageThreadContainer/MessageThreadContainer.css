@@ -1,0 +1,25 @@
+.message-thread-head-sender {
+  color: lightgrey;
+}
+
+.message-thread-head-time {
+  color: lightgrey;
+}
+
+.message-thread-head-text {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+.message-thread-message-input {
+  margin: -20px;
+}
+
+.message-thread-list {
+  margin-top: 20px;
+  margin-left: -10px;
+  margin-right: -10px;
+}

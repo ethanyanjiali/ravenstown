@@ -27,7 +27,7 @@ class SideNavContainer extends Component {
         dispatch(web3Actions.logoutMetaMask());
         break;
       case 'square':
-        history.push(BASE_URL + '/');
+        history.push(BASE_URL +'/');
         break;
       default:
         console.log(navId);

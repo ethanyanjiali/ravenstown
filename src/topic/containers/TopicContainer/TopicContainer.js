@@ -216,7 +216,7 @@ class TopicContainer extends Component {
         >
           <div className='send-message-modal-content'>
             <p>Please confirm your transaction in MetaMask popup window. It may take a while for your message to be posted. The higher the gas price is, the sooner your message will be posted.</p>
-            <img className='confirm-transaction-image' src={ confirmTransaction } alt='submit-transcation' />
+            <img className='confirm-transaction-image' src='https://github.com/ethanyanjiali/ravenstown/blob/master/src/assets/confirm-transaction.png?raw=true' alt='submit-transcation' />
             <Button onClick={ () => this.setState({ isSendMessageModalVisible: false })}>OK</Button>
           </div>
         </Modal>

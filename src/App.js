@@ -10,7 +10,6 @@ import SideNavContainer from './common/containers/SideNavContainer/SideNavContai
 import Web3Manager from './web3/Web3Manager';
 import * as web3Actions from './web3/actions';
 import { makeAction } from './common/utils/reduxUtils';
-import downloadMetaMask from './assets/download-metamask.png';
 import metamaskUnlock from './assets/metamask-unlock.png';
 
 const mapStateToProps = state => ({
@@ -55,7 +54,7 @@ class App extends Component {
                 <Divider> OR </Divider>
               </div>
               <a href='https://metamask.io/' target='_blank' rel='noreferrer noopener' className='download-metamask'>
-                <img className='download-metamask-icon' src={ downloadMetaMask } alt='download-metamask' />
+                <img className='download-metamask-icon' src='https://github.com/ethanyanjiali/ravenstown/blob/master/src/assets/download-metamask.png?raw=true' alt='download-metamask' />
               </a>
               <p className='app-description'>Ravenstown is a decentralized platform for people to express themselves freely. All your posts will be stored on ethereum blockchain permanently, which means no one could ever modify or delete them after, even yourself.</p>
             </div>
@@ -79,7 +78,7 @@ class App extends Component {
         >
           <div className='login-modal-content'>
             <p>Make sure to unlock MetaMask and select the correct account</p>
-            <img className='unlock-image' src={ metamaskUnlock } alt='unlock' />
+            <img className='unlock-image' src='https://github.com/ethanyanjiali/ravenstown/blob/master/src/assets/metamask-unlock.png?raw=true' alt='unlock' />
             <Button onClick={ () => this.setState({ isLogInModalVisible: false })}>Try Again</Button>
           </div>
         </Modal>

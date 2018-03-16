@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Divider, Modal } from 'antd';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, BrowserRouter} from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './App.css';
 import TopicContainer from './topic/containers/TopicContainer/TopicContainer';
@@ -63,10 +63,12 @@ class App extends Component {
         { isWeb3Loaded &&
           <div className='app-content-outer'>
             <div className='app-content-inner'>
-              <Switch>
-                <Route exact path='/' component={ TopicContainer } />
-                <Route path='/m' component={ TopicContainer} />
-              </Switch>
+              <BrowserRouter basename='/ravenstown/build'>
+                <Switch>
+                  <Route exact path='/' component={ TopicContainer } />
+                  <Route path='/m' component={ TopicContainer} />
+                </Switch>
+              </BrowserRouter>
             </div>
           </div>
         }

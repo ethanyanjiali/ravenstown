@@ -14,6 +14,7 @@ import * as messagesSelectors from '../../../messages/selectors';
 import * as selectors from '../../selectors';
 import MessageInputBox from '../../../messages/components/MessageInputBox/MessageInputBox';
 import MessageThreadContainer from '../../../messages/containers/MessageThreadContainer/MessageThreadContainer';
+import { BASE_URL } from '../../../common/constants';
 import confirmTransaction from '../../../assets/confirm-transaction.png';
 import './TopicContainer.css';
 
@@ -67,8 +68,8 @@ class TopicContainer extends Component {
   getTxHashFromPathName = (p) => {
     const { location } = p;
     const paths = location.pathname.split('/');
-    if (paths.length > 2 && paths[1] === 'm') {
-      return paths[2];
+    if (paths.indexOf('m') > 0 && paths.indexOf('m') < paths.length - 1) {
+      return paths[paths.indexOf('m') + 1];
     }
     return null;
   }
@@ -156,13 +157,13 @@ class TopicContainer extends Component {
   handleCloseThread = () => {
     const { history } = this.props;
     this.setState({ isMessageThreadVisible: false });
-    history.push('/');
+    history.push(BASE_URL + '/');
   }
 
   handleClickMessage = (id) => {
     const { history, dispatch } = this.props;
     this.setState({ isMessageThreadVisible: true });
-    history.push(`/m/${id}`);
+    history.push(`${BASE_URL}/m/${id}`);
   }
 
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Divider, Modal } from 'antd';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter, BrowserRouter} from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './App.css';
 import TopicContainer from './topic/containers/TopicContainer/TopicContainer';
@@ -11,6 +11,7 @@ import Web3Manager from './web3/Web3Manager';
 import * as web3Actions from './web3/actions';
 import { makeAction } from './common/utils/reduxUtils';
 import metamaskUnlock from './assets/metamask-unlock.png';
+import { BASE_URL } from './common/constants';
 
 const mapStateToProps = state => ({
   isWeb3Loaded: state.web3.isWeb3Loaded,
@@ -63,12 +64,10 @@ class App extends Component {
         { isWeb3Loaded &&
           <div className='app-content-outer'>
             <div className='app-content-inner'>
-              <BrowserRouter basename='/ravenstown/build'>
-                <Switch>
-                  <Route exact path='/' component={ TopicContainer } />
-                  <Route path='/m' component={ TopicContainer} />
-                </Switch>
-              </BrowserRouter>
+              <Switch>
+                <Route exact path={`${BASE_URL}/`} component={ TopicContainer } />
+                <Route path={`${BASE_URL}/m`} component={ TopicContainer} />
+              </Switch>
             </div>
           </div>
         }

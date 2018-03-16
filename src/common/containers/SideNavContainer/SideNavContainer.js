@@ -8,6 +8,7 @@ import SideNavItem from '../../components/SideNavItem/SideNavItem';
 import './SideNavContainer.css';
 import ravenLogo from '../../../assets/logo.svg';
 import ethLogo from '../../../assets/eth-logo.png';
+import { BASE_URL } from '../../constants';
 
 const mapStateToProps = state => ({
   isWeb3Loaded: state.web3.isWeb3Loaded,
@@ -26,7 +27,7 @@ class SideNavContainer extends Component {
         dispatch(web3Actions.logoutMetaMask());
         break;
       case 'square':
-        history.push('/');
+        history.push(BASE_URL + '/');
         break;
       default:
         console.log(navId);
